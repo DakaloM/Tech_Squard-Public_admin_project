@@ -15,7 +15,7 @@
               </li>
   
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="#">View Updates</a>
+                <a class="nav-link " aria-current="page" href="{% url 'view_updates' %}">View Updates</a>
               </li>
               
   
@@ -27,7 +27,7 @@
                 </li>
                     {% if user.is_staff %}
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="#">Admin</a>
+                        <a class="nav-link " aria-current="page" href="{% url 'admin_page'  %}">Admin</a>
                     </li>
                     {% endif %}
                 {% else %}

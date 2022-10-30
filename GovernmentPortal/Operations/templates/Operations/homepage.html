@@ -2,15 +2,73 @@
 {% load static%}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/projects.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 <!-- Add you css links here for this page only like the one above -->
 {% endblock %}
 
 {% block title%}
-    Home
+Home
 {% endblock%}
 
 {% block content %}
  <!-- Add the content of the page here -->
- <h1>Home page</h1>
+ <h1 class="heading">All Government Projects </h1>
+<div class="wrapperr">
+ <div class="projects-wrapper">
+    <div class="projects">
+        <ul>
+            {% for project in project_list %}
+            <li>
+                <div class="project">
+                    <h3>{{project.name}}</h3>
+                    <h5>Sector: {{project.sector}}</h5>
+                    <h6>Total budget of the project: {{project.budget}}</h6>
+                    <h6>Project Manager: {{project.project_manager}}</h6>
+                    <p>
+                        This project started on <span>{{project.starting_date}}</span> and 
+                        is expected to be completed by <span>{{project.completion_date}}</span>
+                    </p>
+
+                    <p>Projest Status: <span>{{project.project_status}}</span></p>
+                    {% for comment in project_comment_list %}
+                        
+                            <div class="comments">
+                                <p class="username">{{comment.user.username}}</p>
+                                <p class="date">{{comment.date_time}}</p>
+                                <p class="comment">{{comment}}</p>
+                            </div>
+                        
+                    {% endfor %}
+    
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="navigation">
+        <div class="activities">
+            <h3 class="heading">Goverment Officials</h3>
+            {% for official in gov_officials %}
+                <div class="activity">
+                    
+
+                    <div class="activity-content">
+                        <div class="activity-header-details">
+                            <h5 class="user"><span>{{official.user.first_name}}</span> {{official.user.last_name}}</h5>
+                            <p class="sector"><a href="{% url 'view_updates' %}">{{official.role}}</a></p>
+                            <p class="contact">{{official.office_contact_number}}</p>    
+                            
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+ </div>
+</div>
 {% endblock%}

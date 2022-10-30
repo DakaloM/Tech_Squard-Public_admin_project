@@ -1,0 +1,36 @@
+.activities{
+    margin-top: -30px;
+}
+.wrapperr{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity {
+    border-bottom: 1px solid rgb(225, 225, 225);
+    margin-bottom:15px;
+}
+
+.sector a {
+    text-decoration: none;
+    color: orange;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.contact{
+    margin-top: 0;
+}
+.activity-header-details p {
+    line-height: 15px;
+}
+
+.project {
+    letter-spacing: 1px;
+}
+.activities .heading{
+    width: 100%;
+    text-align: left;
+}

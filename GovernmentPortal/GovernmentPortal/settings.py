@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'Members',
     'Operations',
+    'management',
+    'ModelTracker',
     'django.contrib.staticfiles',
 ]
 

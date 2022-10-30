@@ -1,5 +1,8 @@
+from tkinter import constants
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
+from . utils import create_new_token
 
 # Create your models here.
 
@@ -22,13 +25,17 @@ class CabinetPosition(models.Model):
         return self.position    
     
 class CabinetMember(models.Model):
+ 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.OneToOneField(CabinetPosition, blank=True, null=True, on_delete=models.CASCADE)
     address = models.CharField(max_length=225, blank=True, null=True)
+
     office_contact_number = models.CharField(max_length=15, null=True, blank=True)
+
     
     def __str__(self):
         return self.role.position
+
     
 class Municipality(models.Model):
     name = models.CharField(max_length=225, blank=False, null=False)
@@ -88,7 +95,8 @@ class Project(models.Model):
     budget = models.DecimalField(decimal_places = 2, max_digits=20)
     project_manager = models.ForeignKey(PublicUser, on_delete=models.CASCADE)
     project_status = models.CharField(max_length=225,choices=Project_status, default='Not Complete')
-
+    starting_date = models.DateField(null=True)
+    completion_date = models.DateField(null=True)
     
     def __str__(self):
         return self.name
@@ -101,3 +109,30 @@ class PublicComment(models.Model):
     
     def __str__(self):
         return self.user.user.username
+    
+class RemovedCabinetMember(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.OneToOneField(CabinetPosition, blank=True, null=True, on_delete=models.CASCADE)
+    address = models.CharField(max_length=225, blank=True, null=True)
+
+    office_contact_number = models.CharField(max_length=15, null=True, blank=True)
+
+    
+    def __str__(self):
+        return self.role.position
+    
+    
+class Activity(models.Model):
+    Activity_type = (
+        ("Project", models.ForeignKey(Project, null=True, on_delete=models.CASCADE)),
+        ("BudgetAllocation", models.ForeignKey(BudgetAllocation, null=True, on_delete=models.CASCADE)),
+        ("Government Promisses", models.ForeignKey(PromissedDuty, null=True, on_delete=models.CASCADE)),
+        ("Removed Cabinet Member", models.ForeignKey(RemovedCabinetMember, null=True, on_delete=models.CASCADE))
+    )
+    name = models.CharField(max_length=225, blank=False, null=False)
+    sector = models.ForeignKey(PublicSector, blank=False, null=False, on_delete=models.CASCADE)
+    activity_type = models.CharField(max_length=225, blank=False, null=True, choices=Activity_type)
+    activity = models.CharField(max_length=225, blank=False, null=False)
+    
+    def __str__(self):
+        return self.name

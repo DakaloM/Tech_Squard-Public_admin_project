@@ -1,6 +1,17 @@
 from django.contrib import admin
-from . models import BudgetAllocation,PublicComment,PromissedDuty, CabinetMember, CabinetPosition, Project, PublicSector, PublicUser,Municipality, Government,PublicSector
+from . models import RemovedCabinetMember,Activity, BudgetAllocation,PublicComment,PromissedDuty, CabinetMember, CabinetPosition, Project, PublicSector, PublicUser,Municipality, Government,PublicSector
 # Register your models here.
+@admin.register(Activity)
+class ActivityAdmin(admin.ModelAdmin):
+    fields = ('name','sector','activity_type', 'activity')
+    list_display = ('name', 'activity')
+    ordering = ('name',)
+    
+@admin.register(RemovedCabinetMember)
+class RemovedCabinetMemberAdmin(admin.ModelAdmin):
+    fields = ('user', 'role','address','office_contact_number')
+    list_display = ('user', 'role','address','address','office_contact_number')
+    ordering = ('role',)
 
 @admin.register(PublicComment)
 class PublicCommentAdmin(admin.ModelAdmin):
@@ -27,7 +38,7 @@ class CabinetPositionAdmin(admin.ModelAdmin):
 @admin.register(CabinetMember)
 class CabinetMemberAdmin(admin.ModelAdmin):
     fields = ('user', 'role','address','office_contact_number')
-    list_display = ('user', 'role','address','office_contact_number')
+    list_display = ('user', 'role','address','address','office_contact_number')
     ordering = ('role',)
 
 @admin.register(PublicUser)
@@ -44,8 +55,8 @@ class PublicSectorAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    fields = ('name', 'sector', 'budget','project_manager', 'project_status',)
-    list_display = ('name', 'sector', 'budget','project_manager', 'project_status')
+    fields = ('name', 'sector', 'budget','project_manager', 'starting_date', 'completion_date','project_status',)
+    list_display = ('name', 'sector', 'budget','project_manager', 'starting_date', 'completion_date', 'project_status')
     ordering = ('name',)
 
 @admin.register(Government)

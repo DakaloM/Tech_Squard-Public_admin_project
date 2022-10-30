@@ -32,13 +32,7 @@ textarea {
 input[type="text"], select:focus {
     outline: none ;
 }
-.form-container .btn-read-more {
-    width: 100% !important;
-    border-radius:0 !important;
-    padding: 15px 0; 
-    font-size: 20px;
-    font-size: 20px!important;
-}
+
 .form-input {
     margin:  40px 0 !important;
     background: white;
@@ -66,7 +60,7 @@ input[type="text"], select:focus {
     padding: 15px 0;
 }
 
-.login-form .btn-read-more {
+.login-form .btn-read-more{
     background-color: rgb(223, 152, 9);
     color: white;
     width: 100%;
@@ -86,3 +80,33 @@ input[type="text"], select:focus {
     background-color: rgb(0, 0, 29);
     color: white;
 }
+
+.verify-form-container{
+    margin-top:150px;
+    
+}
+
+.verify-form-container h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.verify-form .btn-read-more{
+    width: 100%;
+    background-color: red;
+}
+
+.verify-form .btn-read-more{
+    background-color: rgb(223, 152, 9)!important;
+    color: white;
+    width: 100%;
+    padding: 10px 0;
+    border-radius:0;
+    font-size: 20px;
+    font-weight: 500;
+    align-items: center;
+}
+

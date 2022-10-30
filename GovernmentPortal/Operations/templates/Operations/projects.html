@@ -12,7 +12,7 @@ Projects
 
 {% block content %}
  <!-- Add the content of the page here -->
- <h1 class="heading">All Government Projects for:</h1>
+ <h1 class="heading">All Government Projects </h1>
 
  <div class="projects-wrapper">
     <div class="projects">
@@ -24,6 +24,12 @@ Projects
                     <h5>Sector: {{project.sector}}</h5>
                     <h6>Total budget of the project: {{project.budget}}</h6>
                     <h6>Project Manager: {{project.project_manager}}</h6>
+                    <p>
+                        This project started on <span>{{project.starting_date}}</span> and 
+                        is expected to be completed by <span>{{project.completion_date}}</span>
+                    </p>
+
+                    <p>Projest Status: <span>{{project.project_status}}</span></p>
                     {% for comment in project_comment_list %}
                         
                             <div class="comments">
